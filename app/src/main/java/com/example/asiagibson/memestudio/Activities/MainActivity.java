@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.asiagibson.memestudio.MemeFragment;
 import com.example.asiagibson.memestudio.PainterView;
@@ -15,6 +16,8 @@ import com.example.asiagibson.memestudio.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    ImageView button;
+    ImageView button2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         MemeFragment fragment = new MemeFragment();
         ft.add(R.id.frag_container, fragment);
         ft.commit();
+
     }
 
     }

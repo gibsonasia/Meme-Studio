@@ -1,10 +1,14 @@
 package com.example.asiagibson.memestudio.RV;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.asiagibson.memestudio.Activities.GalleryActivity;
 import com.example.asiagibson.memestudio.R;
 
 import java.util.Arrays;
@@ -15,6 +19,7 @@ import java.util.List;
  */
 
 public class MemeAdapter extends RecyclerView.Adapter<MemeViewHolder>{
+    public Context context;
 
     private List<Integer> mMemeList = Arrays.asList(
             R.drawable.brushicon,
@@ -37,9 +42,9 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(MemeViewHolder holder, int position) {
+    public void onBindViewHolder(MemeViewHolder holder, final int position) {
 
-        Integer holderMeme = mMemeList.get(position);
+        final Integer holderMeme = mMemeList.get(position);
         holder.bind(holderMeme);
 
     }
