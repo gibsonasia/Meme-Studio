@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.asiagibson.memestudio.Activities.GalleryActivity;
-import com.example.asiagibson.memestudio.Demotivational;
+import com.example.asiagibson.memestudio.Activities.Demotivational;
 import com.example.asiagibson.memestudio.R;
 
 /**

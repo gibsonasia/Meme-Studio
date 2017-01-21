@@ -35,7 +35,7 @@
 
 
 
-        <activity android:name=".Demotivational">
+        <activity android:name=".Activities.Demotivational">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

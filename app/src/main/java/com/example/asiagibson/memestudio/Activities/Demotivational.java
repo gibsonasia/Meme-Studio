@@ -1,4 +1,4 @@
-package com.example.asiagibson.memestudio;
+package com.example.asiagibson.memestudio.Activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.asiagibson.memestudio.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
