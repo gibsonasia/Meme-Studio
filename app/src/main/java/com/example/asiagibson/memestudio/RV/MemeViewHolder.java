@@ -42,12 +42,20 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
                         break;
 
 //                    case 1:
-//                        intent = new Intent(context,GalleryActivity.class);
+//                        intent = new Intent(context,YOUR_ACTIVITY.class);
 //                        break;
 //
 //                    case 2:
-//                        intent = new Intent(context,GalleryActivity.class);
+//                        intent = new Intent(context,YOUR_ACTIVITY.class);
 //                        break;
+
+ //                   case 3:
+//                        intent = new Intent(context,YOUR_ACTIVITY.class);
+//                        break;
+//                    case 4:
+//                        intent = new Intent(context,YOUR_ACTIVITY.class);
+//                        break;
+
 
 
                 }
