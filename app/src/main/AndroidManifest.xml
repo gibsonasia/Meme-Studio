@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.asiagibson.memestudio">
 
+<<<<<<< HEAD
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+=======
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -10,13 +17,19 @@
 
 
 
+>>>>>>> 2064b82e77dedb27c81338811121bad880d8452c
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
+        <activity
+            android:name=".TakePictureActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+=======
         <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,12 +39,21 @@
         </activity>
 
         <activity android:name=".Activities.GalleryActivity">
+>>>>>>> 2064b82e77dedb27c81338811121bad880d8452c
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+        <activity
+            android:name=".EnterTextActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".TakePictureActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ChooseMemeActivity"></activity>
+=======
 
 
 
@@ -44,6 +66,7 @@
         </activity>
 
 
+>>>>>>> 2064b82e77dedb27c81338811121bad880d8452c
     </application>
 
 </manifest>
