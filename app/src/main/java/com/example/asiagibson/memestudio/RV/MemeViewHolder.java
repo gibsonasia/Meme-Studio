@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.asiagibson.memestudio.Activities.GalleryActivity;
+import com.example.asiagibson.memestudio.Demotivational;
 import com.example.asiagibson.memestudio.R;
 
 /**
@@ -33,7 +34,7 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View view) {
                 Toast.makeText(view.getContext(),"At this  " + getAdapterPosition(),Toast.LENGTH_SHORT).show();
 
-                final Intent intent;
+                 Intent intent;
                 switch (getAdapterPosition()){
                     case 0:
                        intent = new Intent(context,GalleryActivity.class);
@@ -41,10 +42,11 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
 
                         break;
 
-//                    case 1:
-//                        intent = new Intent(context,YOUR_ACTIVITY.class);
-//                        break;
-//
+                    case 1:
+                        intent = new Intent(context,Demotivational.class);
+                        context.startActivity(intent);
+                        break;
+
 //                    case 2:
 //                        intent = new Intent(context,YOUR_ACTIVITY.class);
 //                        break;
