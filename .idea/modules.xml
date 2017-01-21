@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
+=======
+      <module fileurl="file://$PROJECT_DIR$/Meme-Studio.iml" filepath="$PROJECT_DIR$/Meme-Studio.iml" />
+<<<<<<< HEAD
+=======
+>>>>>>> b0391a66401e74f646d707ff42a58b1564242f3b
       <module fileurl="file://$PROJECT_DIR$/MemeStudio.iml" filepath="$PROJECT_DIR$/MemeStudio.iml" />
+>>>>>>> 2064b82e77dedb27c81338811121bad880d8452c
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
