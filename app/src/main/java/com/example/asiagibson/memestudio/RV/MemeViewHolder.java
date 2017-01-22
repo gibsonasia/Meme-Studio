@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.asiagibson.memestudio.Activities.GalleryActivity;
 import com.example.asiagibson.memestudio.Activities.Demotivational;
+import com.example.asiagibson.memestudio.Activities.GalleryActivity;
 import com.example.asiagibson.memestudio.EnterTextActivity;
 import com.example.asiagibson.memestudio.R;
 
@@ -25,9 +25,7 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
         super(view);
         context = view.getContext();
 
-
         memeType = (ImageView) itemView.findViewById(R.id.iv_meme_type);
-
 
         memeType.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,5 +65,6 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(Integer holderMeme){
         memeType.setImageResource(holderMeme);
+
     }
 }

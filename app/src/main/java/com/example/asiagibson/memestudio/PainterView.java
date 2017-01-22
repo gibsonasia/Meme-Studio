@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,7 +30,7 @@ public class PainterView extends View {
     private Paint drawPaint;
 
     //initial color
-    private int paintColor = 0xFF660000;
+    private int paintColor = Color.parseColor("red");
 
     //canvas - holding pen, holds your drawings
     //and transfers them to the view
@@ -42,7 +41,6 @@ public class PainterView extends View {
 
     //brush size
     private float currentBrushSize, lastBrushSize;
-
 
     private void init() {
         currentBrushSize = getResources().getInteger(R.integer.medium_size);
@@ -70,6 +68,7 @@ public class PainterView extends View {
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
         canvas.drawPath(drawPath, drawPaint);
+
     }
 
     @Override
