@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.asiagibson.memestudio.PainterView;
 import com.example.asiagibson.memestudio.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -42,7 +43,8 @@ public class GalleryActivity extends AppCompatActivity {
     View mImgFrame;
     Button gallery;
     Button savePic;
-    int startPic = R.drawable.image;
+    Button mBtnShare;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class GalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gallery);
 
         permission();
+        imageView = (ImageView) findViewById(R.id.iv);
         mImgFrame = (View) findViewById(R.id.img_Frame);
         gallery = (Button) findViewById(R.id.gallery);
         gallery.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +67,14 @@ public class GalleryActivity extends AppCompatActivity {
 
             }
         });
+        mBtnShare = (Button) findViewById(R.id.btn_share);
+        mBtnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startShare();
+            }
+        });
+
 
         savePic = (Button) findViewById(R.id.save);
         savePic.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +83,7 @@ public class GalleryActivity extends AppCompatActivity {
                 saveImage();
             }
         });
+
     }
 
     @Override
@@ -85,7 +97,6 @@ public class GalleryActivity extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
 
-                ImageView imageView = (ImageView) findViewById(R.id.iv);
                 imageView.setImageBitmap(bitmap);
 
             } catch (IOException e) {
@@ -148,6 +159,24 @@ public class GalleryActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         intent.setData(Uri.fromFile(new_file));
         sendBroadcast(intent);
+    }
+
+    private void startShare() {
+        Bitmap bitmap = viewToBitmap(mImgFrame, mImgFrame.getWidth(), mImgFrame.getHeight());
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("image/jpeg");
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        File file = new File(Environment.getExternalStorageDirectory() + File.separator + "ImageDemo.jpg");
+        try {
+            file.createNewFile();
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(byteArrayOutputStream.toByteArray());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///sdcard/ImageDemo.jpg"));
+        startActivity(Intent.createChooser(shareIntent, "Share Image"));
     }
 
     public void permission() {

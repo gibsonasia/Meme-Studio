@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.asiagibson.memestudio.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -34,9 +35,9 @@ public class DemotivationalActivity extends AppCompatActivity {
     View mImgFrame;
     Button mBtnGallery;
     Button mBtnSave;
+    Button mBtnShare;
     private static final int PICK_IMAGE = 100;
     Uri imgUri;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class DemotivationalActivity extends AppCompatActivity {
         mImgFrame = (View)findViewById(R.id.img_Frame);
         mBtnGallery = (Button)findViewById(R.id.btn_gallery);
         mBtnSave = (Button)findViewById(R.id.btn_save);
+        mBtnShare = (Button)findViewById(R.id.btn_share);
 
         mBtnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +66,15 @@ public class DemotivationalActivity extends AppCompatActivity {
             }
         });
 
-    }
+        mBtnShare = (Button) findViewById(R.id.btn_share);
+        mBtnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startShare();
+            }
+        });
 
+    }
     private void openGallery() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
@@ -77,7 +86,13 @@ public class DemotivationalActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
             imgUri = data.getData();
-            mImgPicture.setImageURI(imgUri);
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imgUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            mImgPicture.setImageBitmap(bitmap);
         }
     }
     //===================================
@@ -126,6 +141,24 @@ public class DemotivationalActivity extends AppCompatActivity {
         sendBroadcast(intent);
     }
 
+    private void startShare() {
+        Bitmap bitmap = viewToBitmap(mImgFrame, mImgFrame.getWidth(), mImgFrame.getHeight());
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("image/jpeg");
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100,byteArrayOutputStream);
+        File file = new File(Environment.getExternalStorageDirectory()+File.separator+"ImageDemo.jpg");
+        try {
+            file.createNewFile();
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(byteArrayOutputStream.toByteArray());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///sdcard/ImageDemo.jpg"));
+        startActivity(Intent.createChooser(shareIntent, "Share Image"));
+    }
+
     public void permission(){
 
         if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) || (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED)) {
@@ -136,7 +169,6 @@ public class DemotivationalActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.INTERNET},   //request specific permission from user
                     10);
-
             return;
         }
 

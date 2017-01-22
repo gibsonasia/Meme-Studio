@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.asiagibson.memestudio.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -34,6 +35,7 @@ public class FacepalmActivity extends AppCompatActivity {
     View mImgFrame;
     Button mBtnGallery;
     Button mBtnSave;
+    Button mBtnShare;
     private static final int PICK_IMAGE = 100;
     Uri imgUri;
 
@@ -49,6 +51,7 @@ public class FacepalmActivity extends AppCompatActivity {
         mImgFrame = (View)findViewById(R.id.img_Frame);
         mBtnGallery = (Button)findViewById(R.id.btn_gallery);
         mBtnSave = (Button)findViewById(R.id.btn_save);
+        mBtnShare = (Button)findViewById(R.id.btn_share);
 
         mBtnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +64,14 @@ public class FacepalmActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveImage();
+            }
+        });
+
+        mBtnShare = (Button) findViewById(R.id.btn_share);
+        mBtnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startShare();
             }
         });
 
@@ -124,6 +135,24 @@ public class FacepalmActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         intent.setData(Uri.fromFile(new_file));
         sendBroadcast(intent);
+    }
+
+    private void startShare() {
+        Bitmap bitmap = viewToBitmap(mImgFrame, mImgFrame.getWidth(), mImgFrame.getHeight());
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("image/jpeg");
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100,byteArrayOutputStream);
+        File file = new File(Environment.getExternalStorageDirectory()+File.separator+"ImageDemo.jpg");
+        try {
+            file.createNewFile();
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(byteArrayOutputStream.toByteArray());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///sdcard/ImageDemo.jpg"));
+        startActivity(Intent.createChooser(shareIntent, "Share Image"));
     }
 
     public void permission(){
