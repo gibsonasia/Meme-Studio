@@ -60,13 +60,13 @@ public class EnterTextActivity extends Activity implements View.OnClickListener 
 
         originalImage = true;
 
-        pictureUri = getIntent().getParcelableExtra(IMAGE_URI_KEY);
-
-        int bitmapWidth = getIntent().getIntExtra(BITMAP_WIDTH, 100);
-        int bitmapHeight = getIntent().getIntExtra(BITMAP_HEIGHT, 100);
-
-        Bitmap selectedImageBitmap = BitmapResizer.ShrinkBitmap(pictureUri.toString(), bitmapWidth, bitmapHeight);
-        selectedPicture.setImageBitmap(selectedImageBitmap);
+//        pictureUri = getIntent().getParcelableExtra(IMAGE_URI_KEY);
+//
+//        int bitmapWidth = getIntent().getIntExtra(BITMAP_WIDTH, 100);
+//        int bitmapHeight = getIntent().getIntExtra(BITMAP_HEIGHT, 100);
+//
+//        Bitmap selectedImageBitmap = BitmapResizer.ShrinkBitmap(pictureUri.toString(), bitmapWidth, bitmapHeight);
+//        selectedPicture.setImageBitmap(selectedImageBitmap);
     }
 
     @Override
