@@ -13,21 +13,12 @@
     android:weightSum="1"
     tools:context="com.example.asiagibson.memestudio.Activities.MainActivity">
 
-
-
     <FrameLayout
         android:id="@+id/frag_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </FrameLayout>
-
-
-
-
-
-
-
 
 </LinearLayout>
 
