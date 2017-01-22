@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.asiagibson.memestudio.Activities.EnterTextActivity;
+
 public class ChooseMemeActivity extends Activity implements View.OnClickListener {
 
     private static final String IMAGE_URI_KEY = "IMAGE_URI";

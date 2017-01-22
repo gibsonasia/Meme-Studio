@@ -31,10 +31,10 @@
 
         <activity android:name=".Activities.GalleryActivity"></activity>
 
-        <activity android:name=".EnterTextActivity"></activity>
+        <activity android:name=".Activities.EnterTextActivity"></activity>
         <activity android:name=".ChooseMemeActivity"></activity>
 
-        <activity android:name=".Activities.Demotivational"></activity>
+        <activity android:name=".Activities.DemotivationalActivity"></activity>
 
     </application>
 

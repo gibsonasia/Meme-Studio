@@ -13,7 +13,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.example.asiagibson.memestudio.Activities.Demotivational">
+        tools:context="com.example.asiagibson.memestudio.Activities.DemotivationalActivity">
 
         <TextView
             android:layout_width="match_parent"
