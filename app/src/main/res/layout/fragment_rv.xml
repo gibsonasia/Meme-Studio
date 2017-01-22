@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="400dp"
-        android:background="#F3EE0F"
-        android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+        <ImageView
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/camera"
+            android:adjustViewBounds="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="320dp">
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight=".5">
 
-        <ImageView
-            android:layout_width="320dp"
-            android:layout_height="320dp"
-            android:src="@drawable/camera"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            />
-
+        <android.support.v7.widget.RecyclerView
+            android:layout_weight=".5"
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F3EE0F">
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.asiagibson.memestudio.Activities.GalleryActivity;
 import com.example.asiagibson.memestudio.Activities.Demotivational;
+import com.example.asiagibson.memestudio.EnterTextActivity;
 import com.example.asiagibson.memestudio.R;
 
 /**
@@ -38,7 +39,6 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
                     case 0:
                        intent = new Intent(context,GalleryActivity.class);
                         context.startActivity(intent);
-
                         break;
 
                     case 1:
@@ -46,9 +46,10 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
                         context.startActivity(intent);
                         break;
 
-//                    case 2:
-//                        intent = new Intent(context,YOUR_ACTIVITY.class);
-//                        break;
+                    case 2:
+                        intent = new Intent(context, EnterTextActivity.class);
+                        context.startActivity(intent);
+                        break;
 
  //                   case 3:
 //                        intent = new Intent(context,YOUR_ACTIVITY.class);
