@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.asiagibson.memestudio.Activities.DemotivationalActivity;
 import com.example.asiagibson.memestudio.Activities.DogeActivity;
+import com.example.asiagibson.memestudio.Activities.FacepalmActivity;
 import com.example.asiagibson.memestudio.Activities.GalleryActivity;
 import com.example.asiagibson.memestudio.Activities.EnterTextActivity;
 import com.example.asiagibson.memestudio.R;
@@ -33,7 +34,7 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
         memeTitle.add("Demotivational Meme");
         memeTitle.add("Vanilla Meme");
         memeTitle.add("Doge Meme");
-        memeTitle.add("Side-Eye Chloe Meme");
+        memeTitle.add("Facepalm Meme");
         memeType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,7 +63,7 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
                         break;
 
                     case 4:
-                        intent = new Intent(context, EnterTextActivity.class);
+                        intent = new Intent(context, FacepalmActivity.class);
                         context.startActivity(intent);
                         break;
 

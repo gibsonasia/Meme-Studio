@@ -3,8 +3,6 @@ package com.example.asiagibson.memestudio.Activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.Uri;
@@ -13,13 +11,11 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.asiagibson.memestudio.PainterView;
 import com.example.asiagibson.memestudio.R;
 
 import java.io.File;
@@ -30,87 +26,67 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by asiagibson on 1/9/17.
+ * Created by eddiemelendez on 1/21/17.
  */
 
-public class GalleryActivity extends AppCompatActivity {
-
-    PainterView painterView;
-
-    private static final String TAG = "Main activity";
-    private int PICK_IMAGE_REQUEST = 1;
+public class FacepalmActivity extends AppCompatActivity {
+    ImageView mImgPicture;
     View mImgFrame;
-    Button gallery;
-    Button savePic;
-    int startPic = R.drawable.image;
+    Button mBtnGallery;
+    Button mBtnSave;
+    private static final int PICK_IMAGE = 100;
+    Uri imgUri;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gallery);
+        setContentView(R.layout.activity_facepalm);
 
         permission();
-        mImgFrame = (View) findViewById(R.id.img_Frame);
-        gallery = (Button) findViewById(R.id.gallery);
-        gallery.setOnClickListener(new View.OnClickListener() {
 
+        mImgPicture = (ImageView)findViewById(R.id.img_picture);
+        mImgFrame = (View)findViewById(R.id.img_Frame);
+        mBtnGallery = (Button)findViewById(R.id.btn_gallery);
+        mBtnSave = (Button)findViewById(R.id.btn_save);
+
+        mBtnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-
+                openGallery();
             }
         });
 
-        savePic = (Button) findViewById(R.id.save);
-        savePic.setOnClickListener(new View.OnClickListener() {
+        mBtnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveImage();
             }
         });
+
+    }
+
+    private void openGallery() {
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, PICK_IMAGE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-
-            Uri uri = data.getData();
-
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-
-                ImageView imageView = (ImageView) findViewById(R.id.iv);
-                imageView.setImageBitmap(bitmap);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+            imgUri = data.getData();
+            mImgPicture.setImageURI(imgUri);
         }
-        Uri uri = data.getData();
-        String[] projection = {MediaStore.Images.Media.DATA};
-
-        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-        cursor.moveToFirst();
-
-        Log.d(TAG, DatabaseUtils.dumpCursorToString(cursor));
-
-        int columnIndex = cursor.getColumnIndex(projection[0]);
-        String picturePath = cursor.getString(columnIndex);
-        cursor.close();
     }
-
-    private File getDisc() {
+    //===================================
+    private File getDisc(){
         File file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
         return new File(file, "Image Demo");
     }
 
-    public static Bitmap viewToBitmap(View view, int width, int height) {
+    public static Bitmap viewToBitmap(View view, int width, int height){
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         view.draw(canvas);
@@ -120,7 +96,7 @@ public class GalleryActivity extends AppCompatActivity {
     private void saveImage() {
         FileOutputStream fileOutputStream = null;
         File file = getDisc();
-        if (!file.exists() && !file.mkdirs()) {
+        if(!file.exists() && !file.mkdirs()){
             Toast.makeText(this, "Can't create directory to save image!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -150,7 +126,7 @@ public class GalleryActivity extends AppCompatActivity {
         sendBroadcast(intent);
     }
 
-    public void permission() {
+    public void permission(){
 
         if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) || (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED)) {
 

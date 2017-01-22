@@ -30,13 +30,11 @@
         </activity>
 
         <activity android:name=".Activities.GalleryActivity"></activity>
-
+        <activity android:name=".Activities.FacepalmActivity"></activity>
         <activity android:name=".Activities.EnterTextActivity"></activity>
         <activity android:name=".ChooseMemeActivity"></activity>
-
         <activity android:name=".Activities.DemotivationalActivity"></activity>
         <activity android:name=".Activities.DogeActivity"></activity>
-
 
     </application>
 
