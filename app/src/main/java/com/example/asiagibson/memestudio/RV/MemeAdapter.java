@@ -23,7 +23,7 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeViewHolder>{
             R.drawable.demotivational_icon,
             R.drawable.vanilla_icon,
             R.drawable.doge_icon,
-            R.drawable.chloe_icon
+            R.drawable.facepalm_icon
     );
 
 
