@@ -19,10 +19,11 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeViewHolder>{
     public Context context;
 
     private List<Integer> mMemeList = Arrays.asList(
-            R.drawable.brushicon,
-            R.drawable.delete,
-            R.drawable.dropper,
-            R.drawable.eraser
+            R.drawable.paint_icon,
+            R.drawable.demotivational_icon,
+            R.drawable.vanilla_icon,
+            R.drawable.doge_icon,
+            R.drawable.chloe_icon
     );
 
 

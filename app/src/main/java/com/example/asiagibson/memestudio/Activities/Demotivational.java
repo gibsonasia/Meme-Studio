@@ -6,11 +6,11 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.asiagibson.memestudio.R;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -33,7 +32,8 @@ import java.util.Date;
 public class Demotivational extends AppCompatActivity {
     ImageView mImgPicture;
     View mImgFrame;
-    Button mBtnUpload, mBtnSave, mBtnShare;
+    Button mBtnGallery;
+    Button mBtnSave;
     private static final int PICK_IMAGE = 100;
     Uri imgUri;
 
@@ -47,11 +47,10 @@ public class Demotivational extends AppCompatActivity {
 
         mImgPicture = (ImageView)findViewById(R.id.img_picture);
         mImgFrame = (View)findViewById(R.id.img_Frame);
-        mBtnUpload = (Button)findViewById(R.id.btn_upload);
+        mBtnGallery = (Button)findViewById(R.id.btn_gallery);
         mBtnSave = (Button)findViewById(R.id.btn_save);
-        mBtnShare = (Button)findViewById(R.id.btn_share);
 
-        mBtnUpload.setOnClickListener(new View.OnClickListener() {
+        mBtnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openGallery();
@@ -62,13 +61,6 @@ public class Demotivational extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveImage();
-            }
-        });
-
-        mBtnShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startShare();
             }
         });
 
@@ -105,7 +97,7 @@ public class Demotivational extends AppCompatActivity {
         FileOutputStream fileOutputStream = null;
         File file = getDisc();
         if(!file.exists() && !file.mkdirs()){
-            Toast.makeText(this, "Can't create directoy to save image!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Can't create directory to save image!", Toast.LENGTH_SHORT).show();
             return;
         }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyymmsshhmmss");
@@ -117,7 +109,7 @@ public class Demotivational extends AppCompatActivity {
             fileOutputStream = new FileOutputStream(new_file);
             Bitmap bitmap = viewToBitmap(mImgFrame, mImgFrame.getWidth(), mImgFrame.getHeight());
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-            Toast.makeText(this, "Image saved successfuly!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Image saved successfully!", Toast.LENGTH_SHORT).show();
             fileOutputStream.flush();
             fileOutputStream.close();
         } catch (FileNotFoundException e) {
@@ -133,29 +125,6 @@ public class Demotivational extends AppCompatActivity {
         intent.setData(Uri.fromFile(new_file));
         sendBroadcast(intent);
     }
-//====================================
-
-    private void startShare() {
-        Bitmap bitmap = viewToBitmap(mImgFrame, mImgFrame.getWidth(), mImgFrame.getHeight());
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setType("image/jpeg");
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100,byteArrayOutputStream);
-        File file = new File(Environment.getExternalStorageDirectory()+File.separator+"ImageDemo.jpg");
-
-        try {
-            file.createNewFile();
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(byteArrayOutputStream.toByteArray());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///sdcard/ImageDemo.jpg"));
-        startActivity(Intent.createChooser(shareIntent, "Share Image"));
-
-    }
-
-
 
     public void permission(){
 
