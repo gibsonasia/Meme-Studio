@@ -29,7 +29,7 @@ import java.util.Date;
  * Created by nesadakoca on 1/09/17.
  */
 
-public class Demotivational extends AppCompatActivity {
+public class DemotivationalActivity extends AppCompatActivity {
     ImageView mImgPicture;
     View mImgFrame;
     Button mBtnGallery;
