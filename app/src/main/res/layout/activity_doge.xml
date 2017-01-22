@@ -13,7 +13,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.example.asiagibson.memestudio.Activities.EnterTextActivity">
+        tools:context="com.example.asiagibson.memestudio.Activities.DogeActivity">
 
         <TextView
             android:layout_width="match_parent"
@@ -21,13 +21,13 @@
             android:textSize="50sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:text="Eddie's Meme"/>
+            android:text="Ridita's Meme"/>
 
         <FrameLayout
             android:id="@+id/img_Frame"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:background="#008000">
+            android:background="#b0e0e6">
 
             <ImageView
                 android:id="@+id/img_picture"
@@ -42,32 +42,44 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|top"
-                android:layout_marginTop="20dp"
+                android:layout_gravity="left|top"
+                android:layout_margin="20dp"
                 android:background="@android:color/transparent"
                 android:cursorVisible="false"
-                android:hint="Type Top Text"
+                android:hint="such noun"
                 android:maxLines="1"
+                android:fontFamily="casual"
                 android:textStyle="bold"
                 android:textAlignment="center"
-                android:textColor="#ffffffff"
-                android:textColorHint="#ffffffff"
-                android:textSize="45sp" />
+                android:textColor="#ff69b4"
+                android:textColorHint="#ff69b4"
+                android:textSize="30sp" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|bottom"
-                android:layout_marginBottom="20dp"
+                android:layout_gravity="center|right"
+                android:layout_margin="20dp"
                 android:background="@android:color/transparent"
                 android:cursorVisible="false"
                 android:maxLines="1"
+                android:fontFamily="casual"
                 android:textStyle="bold"
-                android:hint="Type Bottom Text"
+                android:hint="much verb"
                 android:textAlignment="center"
-                android:textColor="#ffffffff"
-                android:textColorHint="#ffffffff"
-                android:textSize="45sp"/>
+                android:textColor="#7FFF00"
+                android:textColorHint="#7FFF00"
+                android:textSize="30sp"/>
+
+            <ImageView
+                android:id="@+id/doge_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|left"
+                android:layout_margin="10dp"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/doge_frame_layout_img" />
         </FrameLayout>
 
         <LinearLayout

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.asiagibson.memestudio.Activities.DemotivationalActivity;
+import com.example.asiagibson.memestudio.Activities.DogeActivity;
 import com.example.asiagibson.memestudio.Activities.GalleryActivity;
 import com.example.asiagibson.memestudio.Activities.EnterTextActivity;
 import com.example.asiagibson.memestudio.R;
@@ -27,7 +28,6 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
     public MemeViewHolder(View view) {
         super(view);
         context = view.getContext();
-
         memeType = (ImageView) itemView.findViewById(R.id.iv_meme_type);
         memeTitle.add("Painter Meme");
         memeTitle.add("Demotivational Meme");
@@ -56,13 +56,15 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
                         context.startActivity(intent);
                         break;
 
-                    //                   case 3:
-//                        intent = new Intent(context,YOUR_ACTIVITY.class);
-//                        break;
-//                    case 4:
-//                        intent = new Intent(context,YOUR_ACTIVITY.class);
-//                        break;
+                    case 3:
+                        intent = new Intent(context, DogeActivity.class);
+                        context.startActivity(intent);
+                        break;
 
+                    case 4:
+                        intent = new Intent(context, EnterTextActivity.class);
+                        context.startActivity(intent);
+                        break;
 
                 }
             }
