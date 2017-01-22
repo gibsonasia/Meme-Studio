@@ -88,4 +88,10 @@ public class ChooseMemeActivity extends Activity implements View.OnClickListener
 
     }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            super.onRestoreInstanceState(savedInstanceState);
+        }
+    }
 }

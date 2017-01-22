@@ -43,6 +43,7 @@
                 android:src="@drawable/image" />
 
             <EditText
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|bottom"
@@ -59,6 +60,7 @@
                 android:textSize="25dp" />
 
             <EditText
+                android:id="@+id/descript"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|bottom"
@@ -89,6 +91,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Save" />
+
+            <Button
+                android:id="@+id/btn_share"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Share" />
 
         </LinearLayout>
     </LinearLayout>
